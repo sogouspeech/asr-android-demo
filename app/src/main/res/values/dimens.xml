@@ -1,0 +1,7 @@
+<resources>
+
+    <dimen name="ugc_title_size">18sp</dimen>
+    <dimen name="actionbar_height">51dip</dimen>
+    <dimen name="commonTitleSize">18sp</dimen>
+
+</resources>

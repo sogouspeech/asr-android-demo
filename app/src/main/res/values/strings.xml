@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SpeechSDK</string>
+    <string name="menu_settings">设置</string>
+    <string name="title_activity_test_settting">设置</string>
+
+    <string name="logo_slogan">搜狗出品必属精品</string>
+    <string name="logo_welcome">欢迎使用搜狗语音产品</string>
+
+    <string name="switch_off">关</string>
+    <string name="switch_on">开</string>
+</resources>

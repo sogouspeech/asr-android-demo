@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context="com.sogou.demo.activity.TestSettingActivity">
+
+        <include
+            android:id="@+id/test_commonbar"
+            layout="@layout/common_back" />
+
+        <!--<Switch-->
+        <!--android:id="@+id/switch1"-->
+        <!--android:layout_width="174dp"-->
+        <!--android:layout_height="38dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:text="耳语开关"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--<Switch-->
+        <!--android:id="@+id/switch2"-->
+        <!--android:layout_width="175dp"-->
+        <!--android:layout_height="35dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:text="录音/读音频"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/switch1" />-->
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/linearLayout"-->
+        <!--android:layout_width="244dp"-->
+        <!--android:layout_height="127dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/switch2">-->
+
+        <!--<com.example.speechapi.WheelView-->
+        <!--android:id="@+id/wheel_view_wv"-->
+        <!--android:layout_width="240dp"-->
+        <!--android:layout_height="257dp">-->
+
+        <!--</com.example.speechapi.WheelView>-->
+        <!--</LinearLayout>-->
+
+        <!--<Button-->
+        <!--android:id="@+id/button2"-->
+        <!--android:layout_width="253dp"-->
+        <!--android:layout_height="49dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:text="删除日志"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/switch2" />-->
+
+        <TextView
+            android:id="@+id/textLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/test_commonbar"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="选择语言:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="175dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/test_commonbar"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/textLanguage"
+            android:background="@android:color/darker_gray"></Spinner>
+
+        <TextView
+            android:id="@+id/vadBos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/textLanguage"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="VAD BOS:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/vadBosText"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textLanguage"
+            android:layout_marginLeft="20dp"
+            android:hint="0-3"
+            android:layout_toRightOf="@id/vadBos"/>
+
+        <TextView
+            android:id="@+id/vadEos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/vadBos"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="VAD EOS:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/vadEosText"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vadBos"
+            android:layout_marginLeft="20dp"
+            android:hint="0-4"
+            android:layout_toRightOf="@id/vadEos"/>
+
+
+        <TextView
+            android:id="@+id/vadTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/vadEos"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="VAD有效时长:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/vadTimeText"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vadEos"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/vadTime"></EditText>
+
+        <TextView
+            android:id="@+id/longRecordTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/vadTime"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="最长录音时间:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/longRecordTimeText"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vadTime"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/longRecordTime"></EditText>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保存"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/longRecordTime"
+            />
+
+        <Switch
+            android:id="@+id/switch_vad"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@id/save"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:showText="true"
+            android:switchPadding="10dp"
+            android:switchTextAppearance="@style/s_true"
+            android:text="vad开关:"
+            android:textOff="@string/switch_off"
+            android:textOn="@string/switch_on"
+            android:textSize="20sp"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track" />
+
+        <Switch
+            android:id="@+id/switch_wakeup"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@id/switch_vad"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:showText="true"
+            android:switchPadding="10dp"
+            android:switchTextAppearance="@style/s_true"
+            android:text="唤醒:"
+            android:textOff="@string/switch_off"
+            android:textOn="@string/switch_on"
+            android:textSize="20sp"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track" />
+
+        <Switch
+            android:id="@+id/switch_continious_wakeup"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@id/switch_wakeup"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:showText="true"
+            android:switchPadding="10dp"
+            android:switchTextAppearance="@style/s_true"
+            android:text="连续唤醒:"
+            android:textOff="@string/switch_off"
+            android:textOn="@string/switch_on"
+            android:textSize="20sp"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track" />
+
+
+
+        <Switch
+            android:id="@+id/enableLongTime"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@id/switch_continious_wakeup"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:showText="true"
+            android:switchPadding="10dp"
+            android:switchTextAppearance="@style/s_true"
+            android:text="不限时长识别:"
+            android:textOff="@string/switch_off"
+            android:textOn="@string/switch_on"
+            android:textSize="20sp"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track" />
+
+        <TextView
+            android:id="@+id/voiceEncode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/enableLongTime"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="音频编码格式:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/voiceEncodeSpinner"
+            android:layout_width="175dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/enableLongTime"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/voiceEncode"
+            android:background="@android:color/darker_gray"></Spinner>
+
+        <TextView
+            android:id="@+id/sendGap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/voiceEncode"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="发包间隔:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/sendGapSpinner"
+            android:layout_width="175dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/voiceEncode"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/textLanguage"
+            android:background="@android:color/darker_gray"></Spinner>
+
+        <TextView
+            android:id="@+id/environmental"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/sendGap"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="分环境:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/environmentalSpinner"
+            android:layout_width="175dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/sendGap"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/environmental"
+            android:background="@android:color/darker_gray"></Spinner>
+
+
+
+    </RelativeLayout>
+</ScrollView>

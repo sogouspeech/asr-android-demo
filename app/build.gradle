@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    defaultConfig {
+        applicationId "com.sogou.speech.speechsdk"
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME as String
+        multiDexEnabled true
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+
+//        ndk {
+//            abiFilters 'armeabi-v7a'
+//        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//        }
+    }
+    repositories {
+
+    }
+    productFlavors {
+    }
+    buildToolsVersion BUILD_TOOLS_VERSION as String
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.+'
+    compile 'com.android.support.constraint:constraint-layout:1.1.0'
+    compile 'com.android.support:multidex:1.0.0'
+
+    implementation 'com.github.sogouspeech:common-android-sdk:0.2'
+    implementation 'com.github.sogouspeech:asr-android-sdk:0.31'
+    implementation 'com.github.sogouspeech:asr-audio-android-sdk:0.2'
+}
