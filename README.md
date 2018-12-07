@@ -13,4 +13,4 @@
 	是否打开连续唤醒，默认不打开，如果打开连续唤醒设置的话，唤醒默认需要打开的；
 	要注意，每次在从主页进入设置页并且修改设置之后，回到设置页需要重新点击init按钮重新初始化引擎
 
-SDK使用方法请参考[搜狗知音文档](https://docs.speech.sogou.com/docs/asr/sdk)
+SDK使用方法请参考[搜狗知音文档](https://docs.zhiyin.sogou.com/docs/asr/sdk)
