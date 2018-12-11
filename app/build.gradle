@@ -82,7 +82,8 @@ dependencies {
         exclude module: 'httpclient'
     }
 
-    implementation 'com.github.sogouspeech:common-android-sdk:0.2'
-    implementation 'com.github.sogouspeech:asr-android-sdk:0.33'
+    implementation 'com.github.sogouspeech:asr-android-sdk:0.35'
     implementation 'com.github.sogouspeech:asr-audio-android-sdk:0.3'
+    implementation 'com.github.sogouspeech:common-android-sdk:0.2'
+
 }

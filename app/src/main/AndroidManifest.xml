@@ -41,10 +41,7 @@
             android:windowSoftInputMode="adjustResize" />
 
 
-        <meta-data android:name="com.sogou.speech.common-appID"
-            android:value="1111"/>
-        <meta-data android:name="com.sogou.speech.common-appkey"
-            android:value="2222"/>
+
     </application>
 
 </manifest>

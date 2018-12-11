@@ -6,13 +6,18 @@ package com.sogou.demo.activity;
 import android.support.multidex.MultiDexApplication;
 
 import com.sogou.sogouspeech.SogoSpeech;
+import com.sogou.sogouspeech.ZhiyinInitInfo;
 
 public class App extends MultiDexApplication {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        // 传入从知音平台申请的域名，不需要scheme，例如*.*.sogou.com
-        SogoSpeech.initAuth(this,"");
+        ZhiyinInitInfo.Builder builder = new ZhiyinInitInfo.Builder();
+        // 传入从知音平台申请获得的域名，从知音平台获取的appid，设备的uuid。如果需要刷新token则传入appkey，否则传入token
+        ZhiyinInitInfo initInfo = builder.setBaseUrl("").setUuid("").setAppid("").setAppkey("").setToken("").create();
+
+        SogoSpeech.initZhiyinInfo(this,initInfo);
+
     }
 }
