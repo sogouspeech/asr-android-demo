@@ -34,6 +34,8 @@ import com.sogou.sogouspeech.SogoSpeech;
 import com.sogou.sogouspeech.SogoSpeechSettings;
 import com.sogou.sogouspeech.auth.TokenFetchTask;
 import com.sogou.sogouspeech.paramconstants.SpeechConstants;
+import com.sogou.sogouspeech.utils.RecognizeResultUtils;
+import com.sogou.speech.asr.v1.StreamingRecognitionResult;
 import com.sogou.speech.speechsdk.R;
 
 import java.io.IOException;
@@ -199,7 +201,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private EventListener mEventListener = new EventListener() {
         @Override
-        public void onEvent(String eventName, String param, byte[] data, int codeOrOffset, int length) {
+        public void onEvent(String eventName, String param, byte[] data, int codeOrOffset, int length, Object extra) {
             LogUtil.d("xq", "@onEvent eventName:" + eventName + " param:" + param);
 
             //检测到语音结束，需要停止录音，此时识别引擎不再接收数据，传入将报错。
@@ -255,7 +257,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 }
                 Message message = new Message();
                 message.what = UPDATE_RESULT;
-                message.obj = param;
+                StreamingRecognitionResult result = (StreamingRecognitionResult) extra;
+                if (result != null){
+                    message.obj = param + " confidence: " + RecognizeResultUtils.getConfidence(result) + " wordinfo: " + RecognizeResultUtils.getWordInfo(result);
+                }else {
+                    message.obj = param;
+                }
                 handler.sendMessage(message);
             } else if (TextUtils.equals(eventName, SpeechConstants.Message.MSG_ASR_ONLINE_READY)) {
                 Message message = new Message();
@@ -480,14 +487,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onBegin(IAudioSource audioSource) {
         LogUtil.i("audioSourceManager", "@onBegin 录音开始");
 
-        if (SogoSpeechSettings.shareInstance().needWakeup) {
-            /**
-             * 注意！这里识别（ASR_ONLINE_START）和唤醒（WAKEUP_START）的指令不一样！其余地方指令都一样
-             */
-            sogoSpeech.send(SpeechConstants.Command.WAKEUP_START, "", null, 0, 0);
-        } else {
-            sogoSpeech.send(SpeechConstants.Command.ASR_ONLINE_START, "", null, 0, 0);
-        }
+
+        sogoSpeech.send(SpeechConstants.Command.ASR_ONLINE_START, "", null, 0, 0);
+
 
         timeStampAtRecordStart = System.currentTimeMillis();
     }
@@ -529,10 +531,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void resetWakeup() {
         if (sogoSpeech != null) {
-            LogUtil.e("xq", "@resetWakeup");
             hasWakeup = false;
-            SogoSpeechSettings.shareInstance().setProperty(SpeechConstants.Parameter.WAKEUP_IS_NEEDED, true);
-            sogoSpeech.send(SpeechConstants.Command.WAKEUP_START, "", null, 0, 0);
         }
     }
 
