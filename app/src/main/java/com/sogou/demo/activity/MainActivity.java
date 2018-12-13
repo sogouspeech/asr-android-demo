@@ -190,9 +190,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void initEngine(String token) {
 
         sogoSpeech = new SogoSpeech(MainActivity.this);
-        SogoSpeechSettings.shareInstance().setProperty(SpeechConstants.Parameter.ASR_ONLINE_AUTH_TOKEN_STRING, token)
-                .setProperty(SpeechConstants.Parameter.APPID, CommonUtils.getApplicationMetaData(MainActivity.this, SogoConstants.APPID))
-                .setProperty(SpeechConstants.Parameter.UUID, android.os.Build.SERIAL);
 
         sogoSpeech.registerListener(mEventListener);
         sogoSpeech.send(SpeechConstants.Command.ASR_ONLINE_CREATE, null, null, 0, 0);
@@ -384,14 +381,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 if(sogoSpeech != null){
                     sogoSpeech.send(SpeechConstants.Command.ASR_ONLINE_DESTROY,"",null,0,0);
                 }
-                long expTime = CommonSharedPreference.getInstance(MainActivity.this).getLong(CommonSharedPreference.TIMEOUT_STAMP, 0L);//获取token过期时间戳，单位是秒
-                long timeGap = (expTime - 60 * 30) * 1000;//如果当前时间在过期前半小时范围内的话，那么刷新token
-                if (timeGap - System.currentTimeMillis() < 0) {
-                    fetchToken();
-                } else {
-                    token = CommonSharedPreference.getInstance(MainActivity.this).getString(CommonSharedPreference.TOKEN, "");
-                    initEngine(token);
-                }
+//                long expTime = CommonSharedPreference.getInstance(MainActivity.this).getLong(CommonSharedPreference.TIMEOUT_STAMP, 0L);//获取token过期时间戳，单位是秒
+//                long timeGap = (expTime - 60 * 30) * 1000;//如果当前时间在过期前半小时范围内的话，那么刷新token
+//                if (timeGap - System.currentTimeMillis() < 0) {
+//                    fetchToken();
+//                } else {
+                token = CommonSharedPreference.getInstance(MainActivity.this).getString(CommonSharedPreference.TOKEN, "");
+                initEngine(token);
+//                }
                 break;
             case R.id.startButton:
                 timeAtButtonDown = 0;
@@ -407,10 +404,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 resizeDataCache.reset();
 
 
-                if (TextUtils.isEmpty(token) || sogoSpeech == null) {
-                    Toast.makeText(MainActivity.this, "请初始化！", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if (TextUtils.isEmpty(token) || sogoSpeech == null) {
+//                    Toast.makeText(MainActivity.this, "请初始化！", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
 
                 resultBuffer = null;
                 text.setText("");
