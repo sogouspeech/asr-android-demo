@@ -445,7 +445,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void fetchToken() {
-        TokenFetchTask task = new TokenFetchTask(MainActivity.this, new TokenFetchTask.TokenFetchListener() {
+        // 填入baseurl
+        TokenFetchTask task = new TokenFetchTask(MainActivity.this,"", new TokenFetchTask.TokenFetchListener() {
             @Override
             public void onTokenFetchSucc(String result) {
                 LogUtil.d("xq", "onTokenFetchSucc result " + result);
