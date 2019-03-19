@@ -188,7 +188,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      * @param token
      */
     private void initEngine(String token) {
-
+        if (TextUtils.isEmpty(SogoSpeech.sBaseUrl)) {
+            SogoSpeech.sBaseUrl = "api.zhiyin.sogou.com";
+        }
         sogoSpeech = new SogoSpeech(MainActivity.this);
 
         sogoSpeech.registerListener(mEventListener);
@@ -381,14 +383,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 if(sogoSpeech != null){
                     sogoSpeech.send(SpeechConstants.Command.ASR_ONLINE_DESTROY,"",null,0,0);
                 }
-//                long expTime = CommonSharedPreference.getInstance(MainActivity.this).getLong(CommonSharedPreference.TIMEOUT_STAMP, 0L);//获取token过期时间戳，单位是秒
-//                long timeGap = (expTime - 60 * 30) * 1000;//如果当前时间在过期前半小时范围内的话，那么刷新token
-//                if (timeGap - System.currentTimeMillis() < 0) {
-//                    fetchToken();
-//                } else {
-                token = CommonSharedPreference.getInstance(MainActivity.this).getString(CommonSharedPreference.TOKEN, "");
-                initEngine(token);
-//                }
+                long expTime = CommonSharedPreference.getInstance(MainActivity.this).getLong(CommonSharedPreference.TIMEOUT_STAMP, 0L);//获取token过期时间戳，单位是秒
+                long timeGap = (expTime - 60 * 30) * 1000;//如果当前时间在过期前半小时范围内的话，那么刷新token
+                if (timeGap - System.currentTimeMillis() < 0) {
+                    fetchToken();
+                } else {
+                    token = CommonSharedPreference.getInstance(MainActivity.this).getString(CommonSharedPreference.TOKEN, "");
+                    initEngine(token);
+                }
                 break;
             case R.id.startButton:
                 timeAtButtonDown = 0;
@@ -445,8 +447,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void fetchToken() {
-        // 填入baseurl
-        TokenFetchTask task = new TokenFetchTask(MainActivity.this,"", new TokenFetchTask.TokenFetchListener() {
+        if (TextUtils.isEmpty(SogoSpeech.sBaseUrl) ) {
+            SogoSpeech.sBaseUrl = "api.zhiyin.sogou.com";        // 填入baseurl
+            CommonSharedPreference.getInstance(this).setString("uuid", ""); // 设置用户uuid
+            CommonSharedPreference.getInstance(this).setString("appid", ""); // 设置从知音平台获取的appid
+            CommonSharedPreference.getInstance(this).setString("appkey", "");
+        }
+
+        TokenFetchTask task = new TokenFetchTask(MainActivity.this,SogoSpeech.sBaseUrl, new TokenFetchTask.TokenFetchListener() {
             @Override
             public void onTokenFetchSucc(String result) {
                 LogUtil.d("xq", "onTokenFetchSucc result " + result);
