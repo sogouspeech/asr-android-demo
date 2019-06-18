@@ -93,7 +93,5 @@ dependencies {
     compile 'com.github.sogouspeech:asr-audio-android-sdk:1.0.0'
     compile 'com.github.sogouspeech:common-android-sdk:1.0.3'
     compile 'org.conscrypt:conscrypt-android:1.4.2'
-//    compile project(path: ':sogospeech')
-//    compile project(path: ':sogoucommon')
 
 }
