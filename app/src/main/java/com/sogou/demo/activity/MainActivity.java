@@ -186,7 +186,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      * @param token
      */
     private void initEngine(String token) {
-        SogoSpeechSettings.shareInstance().setProperty(SpeechConstants.Parameter.TRANSLATION_ENABLED,true);//打开在线翻译
         if (TextUtils.isEmpty(SogoSpeech.sBaseUrl)) {
             SogoSpeech.sBaseUrl = "api.zhiyin.sogou.com";
         }
@@ -297,17 +296,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 message.what = UPDATE_MESSAGE;
                 message.obj = "唤醒初始化成功";
                 handler.sendMessage(message);
-            }else if (TextUtils.equals(eventName,SpeechConstants.Message.MSG_TRANSLATION_RESULT)){//翻译结果
-                Message message = new Message();
-                message.what = UPDATE_RESULT;
-                String result = "\n原文："+new String(data)+"译文："+param;
-                message.obj = result;
-                handler.sendMessage(message);
-            } else if (TextUtils.equals(eventName,SpeechConstants.Message.MSG_TRANSLATION_INIT_SUCCESS)){
-                Message message = new Message();
-                message.what = UPDATE_MESSAGE;
-                message.obj = "翻译初始化成功";
-                handler.sendMessage(message);
             }
         }
 
@@ -353,7 +341,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 resetWakeup();
             }
 
-            if (errorCode != ErrorIndex.ERROR_VAD_SPEECH_TIMEOUT || !continiousWakup) {
+            if (errorCode != ErrorIndex.ERROR_VAD_SPEECH_TIMEOUT || !continiousWakup) {//此处请注意，如果不需要唤醒功能，在收到错误回调的时候，请务必停止录音！
                 stopRecordMic();
             } else {
                 sogoSpeech.send(SpeechConstants.Command.ASR_ONLINE_CREATE, null, null, 0, 0);
