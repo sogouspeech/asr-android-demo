@@ -97,14 +97,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         public boolean handleMessage(Message msg) {
             String str = "";
             switch (msg.what) {
+                //每个断句的中间结果
                 case UPDATE_PART_RESULT:
                     if (resultBuffer == null) {
-                        str = (String) msg.obj + "\n中间结果:";
+                        str = (String) msg.obj + "";
                     } else {
-                        str = resultBuffer + (String) msg.obj + "\n中间结果:";
+                        str = resultBuffer + (String) msg.obj + "";
                     }
                     text.setText(str);
                     break;
+                    //每个断句的最终结果
                 case UPDATE_RESULT:
                     if (resultBuffer == null) {
                         resultBuffer = (String) msg.obj;
@@ -113,15 +115,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     }
 
                     if (SogoSpeechSettings.shareInstance().enableVad) {
-                        str = resultBuffer + "\n" + "断句:\n" +
-                                "timeAtReciveRecordData - timeAtButtonDown = " + (timeAtReciveRecordData - timeAtButtonDown) + "\n" +
-                                "timeAtSpeechStart - timeAtReciveRecordData = " + (timeAtSpeechStart - timeAtReciveRecordData) + "\n" +
-                                "timeAtFirstResult - timeAtSpeechStart = " + (timeAtFirstResult - timeAtSpeechStart) + "\n" +
-                                "timeAtLastResult - timeAtSpeechStop = " + (timeAtLastResult - timeAtSpeechStop) + "\n";
+                        str = resultBuffer;
                     } else {
-                        str = resultBuffer + "\n" + "断句:\n" +
-                                "timeAtReciveRecordData - timeAtButtonDown = " + (timeAtReciveRecordData - timeAtButtonDown) + "\n" +
-                                "timeAtFirstResult - timeAtReciveRecordData = " + (timeAtFirstResult - timeAtReciveRecordData) + "\n";
+                        str = resultBuffer;
                     }
                     text.setText(str);
                     break;
@@ -133,10 +129,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     textMessage.append(str + "\n");
                     break;
                 case WRITE_STRING_TO_FILE:
+                    //本次识别已经完成
                     str = sogoSpeech.mTimeStamp + ".pcm\n" + resultBuffer + "\n";
                     storeResultToFile(FileUtils.getSDPath() + "/SogoSpeechDebug/", "result.txt", str);
                     textMessage.setMovementMethod(new ScrollingMovementMethod());
-                    textMessage.append("识别结果已写入文件\n");
+                    textMessage.append("本次识别已经完成，识别结果已写入文件\n");
                     break;
                 default:
                     break;
@@ -447,9 +444,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void fetchToken() {
         if (TextUtils.isEmpty(SogoSpeech.sBaseUrl) ) {
             SogoSpeech.sBaseUrl = "api.zhiyin.sogou.com";        // 填入baseurl
-            CommonSharedPreference.getInstance(this).setString("uuid", ""); // 设置用户uuid
-            CommonSharedPreference.getInstance(this).setString("appid", ""); // 设置从知音平台获取的appid
-            CommonSharedPreference.getInstance(this).setString("appkey", "");
+            CommonSharedPreference.getInstance(this).setString("uuid", "123_qweasd_adsd"); // 设备唯一标识
+            CommonSharedPreference.getInstance(this).setString("appid", "15Dy8oGpZg25DldDipPFqyM5HtQ"); // 设置从知音平台获取的appid
+            CommonSharedPreference.getInstance(this).setString("appkey", "sLi8bHfErc399IlJzhDsvdR7tmdPb41/+k8Y/195/lfT5khGylyXdRF4CL0eYCMJxoX8DQlRLM96s9ioe+ZG4g==");//从知音平台获取的appkey
         }
 
         TokenFetchTask task = new TokenFetchTask(MainActivity.this,SogoSpeech.sBaseUrl, new TokenFetchTask.TokenFetchListener() {

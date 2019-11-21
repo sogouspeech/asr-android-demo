@@ -67,7 +67,7 @@ public class TestSettingActivity extends BaseActivity implements View.OnClickLis
 //                .setProperty(SpeechConstants.Parameter.ASR_ONLINE_VAD_LONGMODE_BOOLEAN, false)
                 .setProperty(SpeechConstants.Parameter.ASR_ONLINE_ENABLE_DEBUG_LOG_BOOLEAN, true);
 
-        SogoSpeechSettings.shareInstance().setProperty(SpeechConstants.Parameter.TRANSLATION_ENABLED,true);
+        //SogoSpeechSettings.shareInstance().setProperty(SpeechConstants.Parameter.TRANSLATION_ENABLED,true);
 //        settings.setProperty(SpeechConstants.Parameter.ASR_ONLINE_DEBUG_SAVE_VAD_PATH, FileUtils.getSDPath() + "/SogoSpeechDebug/");
 //        settings.setProperty(SpeechConstants.Parameter.ASR_ONLINE_DEBUG_SAVE_SPEEX_PATH, FileUtils.getSDPath() + "/SogoSpeechDebug/");
 //        settings.setProperty(SpeechConstants.Parameter.ASR_ONLINE_DEBUG_SAVE_REQUEST_DATA_PATH, FileUtils.getSDPath() + "/SogoSpeechDebug/");
