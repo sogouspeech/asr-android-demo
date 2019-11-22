@@ -84,7 +84,7 @@ dependencies {
         exclude module: 'jsr305'
     }
 
-    compile 'com.github.sogouspeech:asr-android-sdk:1.1.5'
+    compile 'com.github.sogouspeech:asr-android-sdk:1.2.0'
     compile 'com.github.sogouspeech:asr-audio-android-sdk:1.0.0'
     compile 'com.github.sogouspeech:common-android-sdk:1.0.3'
     compile 'org.conscrypt:conscrypt-android:1.4.2'

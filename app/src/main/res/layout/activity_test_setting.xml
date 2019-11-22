@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textLanguage"
             android:layout_marginLeft="20dp"
-            android:hint="0-3"
+            android:hint="0-10"
             android:layout_toRightOf="@id/vadBos"/>
 
         <TextView
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/vadBos"
             android:layout_marginLeft="20dp"
-            android:hint="0-4"
+            android:hint="0-10"
             android:layout_toRightOf="@id/vadEos"/>
 
 

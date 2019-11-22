@@ -105,6 +105,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         str = resultBuffer + (String) msg.obj + "";
                     }
                     text.setText(str);
+                    LogUtil.d(TAG,"断句中间结果："+str);
                     break;
                     //每个断句的最终结果
                 case UPDATE_RESULT:
@@ -120,6 +121,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         str = resultBuffer;
                     }
                     text.setText(str);
+                    LogUtil.d(TAG,"断句结果："+str);
                     break;
                 case UPDATE_MESSAGE:
                     str = (String) msg.obj;
@@ -253,7 +255,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 message.what = UPDATE_RESULT;
                 StreamingRecognitionResult result = (StreamingRecognitionResult) extra;
                 if (result != null){
-                    message.obj = param + " confidence: " + RecognizeResultUtils.getConfidence(result) + " wordinfo: " + RecognizeResultUtils.getWordInfo(result);
+                    message.obj = param;
                 }else {
                     message.obj = param;
                 }
@@ -421,7 +423,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     mAudioSourceThread = new Thread(mAudioSource, "audioRecordSource");
                     mAudioSourceThread.start();
                 }
-
+                LogUtil.d(TAG,"Settings:"+SogoSpeechSettings.shareInstance().paramToString());
 //                readWavFromFile(1);
                 break;
             case R.id.stopButton:

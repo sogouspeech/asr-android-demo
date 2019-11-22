@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.sogou.common.activity.BaseActivity;
 import com.sogou.sogocommon.utils.CommonSharedPreference;
@@ -338,15 +339,16 @@ public class TestSettingActivity extends BaseActivity implements View.OnClickLis
         if (v.getId() == R.id.save){
             if (vadBosText.getText() != null){
                 float vadBos = castTofloat(vadBosText.getText().toString());
-                if (vadBos > 0 && vadBos < 4){
+                //VAD前面静音超时时间限制在10秒以内
+                if (vadBos > 0 && vadBos <= 10){
                     SogoSpeechSettings.shareInstance().setProperty(SpeechConstants.Parameter.ASR_ONLINE_VAD_BOS_FLOAT,vadBos);
                 }
 
             }
-
+            //VAD后面静音超时时间限制在10秒以内
             if (vadEosText.getText() != null){
                 float vadEos = castTofloat(vadEosText.getText().toString());
-                if (vadEos > 0 && vadEos < 5){
+                if (vadEos > 0 && vadEos <=10){
                     SogoSpeechSettings.shareInstance().setProperty(SpeechConstants.Parameter.ASR_ONLINE_VAD_EOS_FLOAT,vadEos);
 
                 }
@@ -366,6 +368,7 @@ public class TestSettingActivity extends BaseActivity implements View.OnClickLis
                 }
             }
             LogUtil.v("SogoSpeech","SogoSpeechSettings "+SogoSpeechSettings.shareInstance().paramToString());
+            Toast.makeText(this,"保存成功！",Toast.LENGTH_SHORT).show();
         }
 
     }
